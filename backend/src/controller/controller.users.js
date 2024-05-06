@@ -3,11 +3,9 @@ import { validationResult } from "express-validator";
 
 export const show_users= async(req, res)=>{
     try {
-        const show = await conexion.query("select*from usuarios");
+        const show = await conexion.query("select * from usuarios");
         if (show.length>0) {
-            res.status(200).json({
-                "mensaje":show
-            })
+            res.status(200).json(show)
         }else{
             res.status(404).json({
                 "mensaje":"algo salio mal"

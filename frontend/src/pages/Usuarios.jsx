@@ -6,10 +6,10 @@ const Usuarios = () => {
 
   const listarUsuarios = async () => {
     try {
-      const respuesta = await axios.get("http://localhost:4000/listar_usuarios");
-      const datosUsuarios = respuesta.data.mensaje;
-      console.log(datosUsuarios);
-      setUsuarios(datosUsuarios);
+     await axios.get("http://localhost:4000/listar_usuarios").then((response) => {
+      console.log(response.data)
+      setUsuarios(response.data[0])
+     })
 
     } catch (error) {
       console.log(error);
