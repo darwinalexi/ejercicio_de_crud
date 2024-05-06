@@ -4,11 +4,13 @@ import Swal from 'sweetalert2';
 
 
 const Formulario = ()=>{
+
 const [usuarios, setusuarios]=useState({
 nombres:'',
 direccion:'',
 telefono:'',
 correo:'',
+rol:'',
 password:'',
 })
 
@@ -27,13 +29,7 @@ const registrar_usuario = async (event) => {
             showConfirmButton: false,
             timer: 2000
           });
-    }else{
-      Swal.fire({
-        icon: "error",
-        title: "Algo salio mal",
-        showConfirmButton: false,
-        timer: 1500
-      });
+          window.location.reload();
     }
     } catch (error) {
       console.log(error);
@@ -50,7 +46,7 @@ const handinputchange=(event)=>{
 
     return(
         <>
-        <div className="bg-sky-300 w-1/4 absolute right-7 mr-12">
+        <div className="bg-sky-300 w-78 absolute right-7 mr-12">
             <form action="" onSubmit={registrar_usuario}>
                 <h1 className="flex justify-center font-mono m-6">Registra Un Usuario</h1>
                 <label>Ingrese Su Nombre</label>
@@ -69,7 +65,12 @@ const handinputchange=(event)=>{
                 <br />
                 <input type="email" name="correo" placeholder="INGRESE CORREO" onChange={handinputchange} className="rounded-xl placeholder:pl-6 focus:outline-none" />
                 <br />
-              
+              <label>Seleccione Su Rol </label>
+                <br />
+                <select name="rol" className="rounded-lg" onChange={handinputchange} value={usuarios.rol}>
+                  <option value="administrador" className="rounded-lg" >Administrador</option>
+                  <option value="usuario" className="rounded-lg" >Usuario</option>
+                </select>
                 <br />
                 <label>Ingrese su Clave</label>
                 <br />
@@ -77,6 +78,7 @@ const handinputchange=(event)=>{
                 <br />
                 <input type="submit" className="bg-red-400 m-6 rounded-xl w-40"value="Registrar usuario" />
             </form>
+     
         </div>
         </>
     );
